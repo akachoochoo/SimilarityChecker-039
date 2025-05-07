@@ -6,10 +6,14 @@ class SimilarityChecker {
 public:
 	int getSimilarity(string& input1, string& input2)
 	{		
+		int lengthLongWord = std::max(input1.length(), input2.length());
+		int lengthShortWord = std::min(input1.length(), input2.length());
 		if (isMax(input1, input2)) return LengthMaxScore;
 		if (isMin(input1, input2)) return LengthMinScore;
 
-		return LengthMinScore;
+
+		int gap = lengthLongWord - lengthShortWord;
+		return (1 - gap/lengthShortWord) * LengthMaxScore;
 	}
 
 	bool isMin(std::string& input1, std::string& input2)
