@@ -17,11 +17,25 @@ public:
 		return (lengthShortWord - gap) * LengthMaxScore / lengthShortWord;
 	}
 
-	int getAlphabetPoint(const string& input1, const string& input2)
+	double getAlphabetPoint(const string& input1, const string& input2)
 	{
-		if (isSameAlphabetUsed(input1, input2)) return AlphabetMaxScore;
+		set<char> alphaSet1(input1.begin(), input1.end());
+		set<char> alphaSet2(input2.begin(), input2.end());
 
-		return MinScore;
+		
+		// TotalCnt = 합집합의 크기
+		set<char> totalSet = alphaSet1;
+		totalSet.insert(alphaSet2.begin(), alphaSet2.end());
+		int TotalCnt = totalSet.size();
+
+		// SameCnt = 교집합의 크기
+		int SameCnt = 0;
+		for (char c : alphaSet1) {
+			if (alphaSet2.count(c)) SameCnt++;
+		}
+
+		// 점수 계산
+		return (TotalCnt == 0) ? 0 : ((double)SameCnt / TotalCnt) * AlphabetMaxScore;		
 	}
 
 private:
@@ -29,9 +43,9 @@ private:
 	static constexpr int LengthMaxScore = 60;
 	static constexpr int MinScore = 0;
 
-	bool isSameAlphabetUsed(const std::string& input1, const std::string& sinput2) {
+	bool isSameAlphabetUsed(const std::string& input1, const std::string& input2) {
 		set<char> set1(input1.begin(), input1.end());
-		set<char> set2(sinput2.begin(), sinput2.end());
+		set<char> set2(input2.begin(), input2.end());
 		return set1 == set2;
 	}
 

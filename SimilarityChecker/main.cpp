@@ -27,10 +27,13 @@ TEST_F(SimilarityCheckerFixture, CheckLengthMin) {
 }
 
 TEST_F(SimilarityCheckerFixture, CheckLengthPartial1) {	
-	doLengthTest("AAABB", "BAA", 20);}
+	doLengthTest("AAABB", "BAA", 20);
+	doAlphabetTest("AAABB", "BAA", 40);
+}
 
 TEST_F(SimilarityCheckerFixture, CheckLengthPartial2) {
 	doLengthTest("AA", "AAE", 30);
+	doAlphabetTest("AA", "AAE", 20);
 }
 
 int main()
