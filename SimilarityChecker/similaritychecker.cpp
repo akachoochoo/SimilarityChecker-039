@@ -4,7 +4,7 @@ using std::string;
 
 class SimilarityChecker {
 public:
-	int getSimilarity(string& input1, string& input2)
+	int getSimilarity(const string& input1, const string& input2)
 	{		
 		int lengthLongWord = std::max(input1.length(), input2.length());
 		int lengthShortWord = std::min(input1.length(), input2.length());
@@ -16,7 +16,7 @@ public:
 		return (1 - gap/lengthShortWord) * LengthMaxScore;
 	}
 
-	bool isMin(std::string& input1, std::string& input2)
+	bool isMin(const std::string& input1, const  std::string& input2)
 	{
 		int lengthLongWord = std::max(input1.length(), input2.length());
 		int lengthShortWord = std::min(input1.length(), input2.length());		
@@ -26,7 +26,7 @@ public:
 		return false;
 	}
 
-	bool isMax(std::string& input1, std::string& input2)
+	bool isMax(const string& input1, const string& input2)
 	{
 		int length1 = input1.length();
 		int length2 = input2.length();

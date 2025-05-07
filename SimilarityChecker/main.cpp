@@ -3,48 +3,30 @@
 #include <string>
 using std::string;
 
-TEST(SimilarityChecker, CheckLengthMax){
-	int expected = 60;
+class SimilarityCheckerFixture : public ::testing::Test
+{
+public:
 	SimilarityChecker app;
-	string input1 = "ASD";
-	string input2 = "DSA";
+	void doLengthTest(const string& input1, const string& input2, int expected) {
+		EXPECT_EQ(expected, app.getSimilarity(input1, input2));
+	}
+};
 
-	int actual = app.getSimilarity(input1, input2);
-	
-	EXPECT_EQ(expected, actual);
+
+TEST_F(SimilarityCheckerFixture, CheckLengthMax){
+	doLengthTest("ASD", "DSA", 60);
 }
 
-TEST(SimilarityChecker, CheckLengthMin) {
-	int expected = 0;
-	SimilarityChecker app;
-	string input1 = "A";
-	string input2 = "BB";
-
-	int actual = app.getSimilarity(input1, input2);
-
-	EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, CheckLengthMin) {
+	doLengthTest("A", "BB", 0);
 }
 
-TEST(SimilarityChecker, CheckLengthPartial1) {
-	int expected = 20;
-	SimilarityChecker app;
-	string input1 = "AAABB";
-	string input2 = "BAA";
-
-	int actual = app.getSimilarity(input1, input2);
-
-	EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, CheckLengthPartial1) {	
+	doLengthTest("AAABB", "BAA", 20);
 }
 
-TEST(SimilarityChecker, CheckLengthPartial2) {
-	int expected = 30;
-	SimilarityChecker app;
-	string input1 = "AA";
-	string input2 = "AAE";
-
-	int actual = app.getSimilarity(input1, input2);
-
-	EXPECT_EQ(expected, actual);
+TEST_F(SimilarityCheckerFixture, CheckLengthPartial2) {
+	doLengthTest("AA", "AAE", 30);
 }
 
 int main()
