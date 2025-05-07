@@ -10,11 +10,15 @@ public:
 	void doLengthTest(const string& input1, const string& input2, int expected) {
 		EXPECT_EQ(expected, app.getLengthPoint(input1, input2));
 	}
+	void doAlphabetTest(const string& input1, const string& input2, int expected) {
+		EXPECT_EQ(expected, app.getAlphabetPoint(input1, input2));
+	}
 };
 
 
 TEST_F(SimilarityCheckerFixture, CheckLengthMax){
 	doLengthTest("ASD", "DSA", 60);
+	doAlphabetTest("ASD", "DSA", 40);
 }
 
 TEST_F(SimilarityCheckerFixture, CheckLengthMin) {
