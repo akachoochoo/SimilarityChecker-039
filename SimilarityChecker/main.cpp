@@ -25,6 +25,17 @@ TEST(SimilarityChecker, CheckLengthMin) {
 	EXPECT_EQ(expected, actual);
 }
 
+TEST(SimilarityChecker, CheckLengthPartial) {
+	int expected = 0;
+	SimilarityChecker app;
+	string input1 = "AAABB";
+	string input2 = "BAA";
+
+	int actual = app.getSimilarity(input1, input2);
+
+	EXPECT_EQ(expected, actual);
+}
+
 int main()
 {
 	::testing::InitGoogleMock();
