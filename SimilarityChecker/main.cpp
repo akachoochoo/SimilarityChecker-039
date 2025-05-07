@@ -8,7 +8,7 @@ class SimilarityCheckerFixture : public ::testing::Test
 public:
 	SimilarityChecker app;
 	void doLengthTest(const string& input1, const string& input2, int expected) {
-		EXPECT_EQ(expected, app.getSimilarity(input1, input2));
+		EXPECT_EQ(expected, app.getLengthPoint(input1, input2));
 	}
 };
 
