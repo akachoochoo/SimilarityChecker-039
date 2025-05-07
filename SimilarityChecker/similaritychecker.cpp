@@ -12,9 +12,9 @@ public:
 		int lengthShortWord = std::min(input1.length(), input2.length());
 		if (isMaxPoint(input1, input2)) return LengthMaxScore;
 		if (isMinPoint(input1, input2)) return MinScore;
-		 
+				
 		int gap = lengthLongWord - lengthShortWord;
-		return (1 - gap/lengthShortWord) * LengthMaxScore;
+		return (lengthShortWord - gap) * LengthMaxScore / lengthShortWord;
 	}
 
 	int getAlphabetPoint(const string& input1, const string& input2)

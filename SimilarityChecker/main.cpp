@@ -23,11 +23,11 @@ TEST_F(SimilarityCheckerFixture, CheckLengthMax){
 
 TEST_F(SimilarityCheckerFixture, CheckLengthMin) {
 	doLengthTest("A", "BB", 0);
+	doAlphabetTest("A", "BB", 0);
 }
 
 TEST_F(SimilarityCheckerFixture, CheckLengthPartial1) {	
-	doLengthTest("AAABB", "BAA", 20);
-}
+	doLengthTest("AAABB", "BAA", 20);}
 
 TEST_F(SimilarityCheckerFixture, CheckLengthPartial2) {
 	doLengthTest("AA", "AAE", 30);
